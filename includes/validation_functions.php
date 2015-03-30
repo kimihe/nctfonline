@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Valentine
- * Date: 3/3/14
- * Time: 12:42 PM
- */
+
 
 function has_presence($value) {
     return isset($value) || $value !== "";
