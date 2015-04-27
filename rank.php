@@ -1,12 +1,6 @@
-<?php include('includes/header.html'); ?>
-
-
-
+<?php include('includes/header.php'); ?>
 
 <?php
-
-//Connect to Db and fetch score
-require_once('includes/db_conn.php');
 
 //Create a query to fetch all the questions
 $query = "select user_id,username,score,time from nctf_accounts order by score DESC,time ASC";

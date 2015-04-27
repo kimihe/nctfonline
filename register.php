@@ -1,11 +1,8 @@
-<?php include('includes/header.html'); ?>
+<?php include('includes/header.php'); ?>
 
 <h2> </h2>
 <?php 
 
-
-require('includes/db_conn.php'); 
- 
 $sOutput .= '<div id="register-body">'; 
  
 if (isset($_GET['action'])) { 

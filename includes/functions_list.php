@@ -229,6 +229,7 @@ $userArray = array();
 while ($row = $query_result->fetch_assoc()){
     $userArray[] = $row;
 }
+//if (isset($userArray)){ exit;}
 $userArray=$userArray[0];
 //var_dump($userArray );
 

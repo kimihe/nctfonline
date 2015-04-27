@@ -1,9 +1,7 @@
-<?php include('includes/header.html'); ?>
+<?php include('includes/header.php'); ?>
 
 <h2> </h2>
 <?php 
- 
-require('includes/db_conn.php'); 
  
 // If the user is logging in or out 
 // then lets execute the proper functions 
@@ -59,9 +57,9 @@ if (loggedIn()) {
     $sError = '<span id="error">' . $_SESSION['error'] . '</span><br />'; 
   } 
   
-    $sOutput .= '<div class="col-md-offset-2 col-md-3">' . $sError . ' 
+    $sOutput .= '<div  class="container col-md-3 col-md-offset-4" >' . $sError . ' 
+	    <br>
         <h1>Login</h1>
-		<br>
         <form method="post" action="login.php?action=login">
 		     <div class="form-group">
                 <label for="email">email</label>
