@@ -22,7 +22,7 @@ if (mysqli_connect_error()){
 	exit();
 }
 
-
+DEFINE ('ADMINNAME', 'ctfadmin');
 // require the function file 
 
 // default the error variable to empty. 

@@ -1,6 +1,6 @@
 <?php include('includes/header.php'); ?>
 
-<h2> </h2>
+<h1></h1>
 <?php 
  
 if (isset($_GET['action'])) { 
@@ -9,11 +9,10 @@ if (isset($_GET['action'])) {
       // If the form was submitted lets try to create the account. 
       if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email'])) { 
         if (createAccount($_POST['username'], $_POST['password'], $_POST['email'])) { 
-          $sOutput .= '<h1>Account Created</h1><br />Your account has been created.  
-                You can now login <a href="login.php">here</a>.'; 
+          $sOutput .= '<h2>Account Created</h2><br><h5>Your account has been created.  
+                You can now login <a href="login.php">here</a></h5>.'; 
         }else { 
           // unset the action to display the registration form. 
-		  $sOutput .='<br><br><br><br>'.$_SESSION['error'] ;
           unset($_GET['action']); 
         }         
       }else { 
@@ -43,7 +42,7 @@ if (loggedIn()) {
    
   $sError = ""; 
   if (isset($_SESSION['error'])) { 
-    $sError = '<span id="error">' . $_SESSION['error'] . '</span><br />'; 
+    $sError = '<span id="error"><h5>' . $_SESSION['error'] . ' </h5></span>'; 
   } 
    
   $sOutput .= '<div  class="container col-md-3 col-md-offset-4" >
@@ -51,20 +50,17 @@ if (loggedIn()) {
         <h2>Register</h2>
         <form method="post" action="' . $_SERVER['PHP_SELF'] . '?action=register">
             <div class="form-group">
-                <label for="username">username</label>
                 <input type="text" placeholder="Enter your username here" name="username"  value="' . $sUsername . '"  id="username" class="form-control">
             </div>
 			 <div class="form-group">
-                <label for="password">password</label>
                 <input type="password" placeholder="Enter your password here" name="password" id="password" class="form-control">
             </div>
 			<div class="form-group">
-                <label for="email">email</label>
                 <input type="text" placeholder="Enter your email here" name="email" id="email" class="form-control">
             </div>
             
-            <button name="submit" value="submit" class="btn btn-primary btn-large" type="submit">Register!</button>
-			<h4></h4><h4>Would you like to <a href="login.php">login</a>?</h4>
+            <button name="submit" value="submit" class="btn btn-primary btn-large" type="submit">Register!</button>' . $sError . '
+			<h4> </h4><h5>Would you like to <a href="login.php">login</a>?</h5>
         </form>';
 
 } 

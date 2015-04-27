@@ -118,13 +118,8 @@ WHERE
     }elseif (mysqli_num_rows($query) == 1) { 
       $_SESSION['error'] = "Username already exists."; 
     }else { 
-      // All errors passed lets 
-      // Create our insert SQL by hashing the password and using the escaped Username. 
-      //$sql = "INSERT INTO nctf_accounts (`username`, `password`) VALUES ('" . $eUsername . "', '" . hashPassword($pPassword, SALT1, SALT2) . "');"; 
-	  $sql = "INSERT INTO nctf_accounts (`username`, `password`, `mail`,`time`) VALUES ('" . $eUsername . "', '" . hashPassword($pPassword). "','" . $pMail . "',now());"; 
-       
+	  $sql = "INSERT INTO nctf_accounts (`username`, `password`, `mail`,`time`) VALUES ('" . $eUsername . "', '" . hashPassword($pPassword). "','" . $pMail . "',now());";  
       $query = mysqli_query($dbc,$sql) or trigger_error("Query Failed: " . mysql_error()); 
-       
       if ($query) { 
         return true; 
       }   
