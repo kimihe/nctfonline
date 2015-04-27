@@ -2,10 +2,9 @@
 
 <h2> </h2>
 <?php 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
-require($_SERVER['DOCUMENT_ROOT'] . 'nctf/includes/db_conn.php'); 
+
+require('includes/db_conn.php'); 
  
 $sOutput .= '<div id="register-body">'; 
  
@@ -19,6 +18,7 @@ if (isset($_GET['action'])) {
                 You can now login <a href="login.php">here</a>.'; 
         }else { 
           // unset the action to display the registration form. 
+		  $sOutput .='<br><br><br><br>'.$_SESSION['error'] ;
           unset($_GET['action']); 
         }         
       }else { 
@@ -26,6 +26,7 @@ if (isset($_GET['action'])) {
         unset($_GET['action']); 
       } 
     break; 
+	
   } 
 } 
  

@@ -24,11 +24,6 @@ while ($row = $query_result->fetch_assoc()){
     $questionsArray[] = $row;
 }
 
-//Create an array of Correct answers
-//$correctAnswerArray = array();
-//foreach($questionsArray as  $question){
-//    $correctAnswerArray[$question['question_id']] = $question['question'];
-//}
 
 
 //Build the questions array from query result
@@ -42,11 +37,4 @@ foreach($questionsArray as $question) {
 	
 	//echo $question['comment'];
  }
-
-
-//Build the choices array from query result
-//$choices = array();
-//foreach ($questionsArray as $row) {
- //   $choices[$row['question_id']] = array($row['choice1'], $row['choice2'], $row['choice3'], $row['answer']);
- // }
 

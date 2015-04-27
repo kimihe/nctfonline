@@ -3,7 +3,7 @@
 <h2> </h2>
 <?php 
  
-require($_SERVER['DOCUMENT_ROOT'] . 'nctf/includes/db_conn.php'); 
+require('includes/db_conn.php'); 
  
 // If the user is logging in or out 
 // then lets execute the proper functions 
