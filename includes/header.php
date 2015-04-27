@@ -53,6 +53,9 @@
                     <li>
                         <a class="page-scroll" href="index.php#contact">Contact</a>
                     </li>		
+                   <li>
+                        <a class="page-scroll" href="notice.php">Notice</a>
+                    </li>		
                     <li>
                         <a class="page-scroll" href="rank.php">Rank</a>
                     </li>
