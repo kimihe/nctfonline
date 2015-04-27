@@ -4,7 +4,8 @@
 session_start(); 
 
 
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
+error_reporting(0);
 //Set the database access information as constants
 
 
@@ -25,10 +26,8 @@ if (mysqli_connect_error()){
 // require the function file 
 
 // default the error variable to empty. 
-$_SESSION['loggedin'] = false;
 $_SESSION['error'] = ""; 
-$_SESSION['username'] = ""; 
-$_SESSION['loggedin'] = ""; 
+
 require_once('functions_list.php');  
 // declare $sOutput so we do not have to do this on each page. 
 $sOutput=''; 

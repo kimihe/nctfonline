@@ -1,6 +1,6 @@
-<?php include('includes/header.php'); ?>
+<?php require_once('includes/header.php'); ?>
 
-<h2> </h2>
+
 <?php 
  
 // If the user is logging in or out 
@@ -26,23 +26,25 @@ if (isset($_GET['action'])) {
       // If they are not logged in, well nothing needs to be done. 
       if (loggedIn()) { 
         logoutUser(); 
-        $sOutput .= '<h1>Logged out!</h1><br />
-            <br /><h4>You have been logged out successfully.  </h4>'; 
+        $sOutput .= '<h1>Logged out!</h1><br/>
+            <br/><h4>You have been logged out successfully.  </h4>'; 
+	    header("Location: index.php");   
       }else { 
         // unset the action to display the login form. 
         unset($_GET['action']); 
       } 
+      
     break; 
   } 
 } 
 
-$sOutput .= '<div id="index-body">'; 
 
 // See if the user is logged in. If they are greet them  
 // and provide them with a means to logout. 
 if (loggedIn()) { 
-     //show userprofile
-	userProfile($_SESSION["username"]);
+     //enter home.php
+    header("Location: home.php");   
+	//userProfile($_SESSION["username"]);
 
 }elseif (!isset($_GET['action'])) { 
   // incase there was an error  
@@ -54,12 +56,12 @@ if (loggedIn()) {
    
   $sError = ""; 
   if (isset($_SESSION['error'])) { 
-    $sError = '<span id="error">' . $_SESSION['error'] . '</span><br />'; 
+    $sError = '<span id="error">' . $_SESSION['error'] . '</span><br/>'; 
   } 
   
     $sOutput .= '<div  class="container col-md-3 col-md-offset-4" >' . $sError . ' 
 	    <br>
-        <h1>Login</h1>
+        <h2>Login</h2>
         <form method="post" action="login.php?action=login">
 		     <div class="form-group">
                 <label for="email">email</label>
@@ -69,14 +71,12 @@ if (loggedIn()) {
                 <label for="type">password</label>
                 <input type="password" placeholder="Enter your password here" name="password" id="password" class="form-control">
              </div>
-            <button name="submit" value="submit" class="btn btn-primary btn-large" type="submit">Login!</button>   Forget<a href="resetpwd.php">password</a>?
+            <button name="submit" value="submit" class="btn btn-primary btn-large" type="submit">Login!</button> &nbsp;&nbsp; Forget<a href="resetpwd.php">password</a>?
 			<h4></h4>
             <h4>Create a new <a href="register.php">account</a>?</h4>
 			
 	   </form> '; 
 } 
- 
-$sOutput .= '</div>'; 
  
 // lets display our output string. 
 echo $sOutput; 

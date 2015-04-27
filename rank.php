@@ -32,7 +32,7 @@ foreach($rankArray as $tt) {
 
 ?>
   <?php
-   $sOutput .= '<table class="table">
+   $sOutput .= '<div  class="container col-md-5 col-md-offset-3" ><table class="table">
    <caption><h2><span class="glyphicon glyphicon-record"></span>  RANK <h2></caption>
    <thead>
       <tr>
@@ -91,7 +91,7 @@ foreach($rankArray as $tt) {
 	    }
 		$sOutput .= '</td><td>'.$time_list[$id].'</td></tr>';
 	}
-        $sOutput .= '</tbody></table>';    
+        $sOutput .= '</tbody></table></div>';    
 		echo $sOutput;
 ?>
 	

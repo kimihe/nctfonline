@@ -2,8 +2,6 @@
 
 <h2> </h2>
 <?php 
-
-$sOutput .= '<div id="register-body">'; 
  
 if (isset($_GET['action'])) { 
   switch (strtolower($_GET['action'])) { 
@@ -48,31 +46,28 @@ if (loggedIn()) {
     $sError = '<span id="error">' . $_SESSION['error'] . '</span><br />'; 
   } 
    
-  $sOutput .= '<div class="col-md-offset-2 col-md-3">
-        <h1>Register</h1>
-		<br>
+  $sOutput .= '<div  class="container col-md-3 col-md-offset-4" >
+	    <br>
+        <h2>Register</h2>
         <form method="post" action="' . $_SERVER['PHP_SELF'] . '?action=register">
             <div class="form-group">
                 <label for="username">username</label>
                 <input type="text" placeholder="Enter your username here" name="username"  value="' . $sUsername . '"  id="username" class="form-control">
             </div>
 			 <div class="form-group">
-                <label for="type">password</label>
+                <label for="password">password</label>
                 <input type="password" placeholder="Enter your password here" name="password" id="password" class="form-control">
             </div>
 			<div class="form-group">
                 <label for="email">email</label>
-                <input type="text" placeholder="Enter your question  email here" name="email" id="email" class="form-control">
+                <input type="text" placeholder="Enter your email here" name="email" id="email" class="form-control">
             </div>
-           
+            
             <button name="submit" value="submit" class="btn btn-primary btn-large" type="submit">Register!</button>
-			<h4>Would you like to <a href="login.php">login</a>?</h4>
+			<h4></h4><h4>Would you like to <a href="login.php">login</a>?</h4>
         </form>';
 
 } 
- 
-$sOutput .= '</div>'; 
- 
 
 echo $sOutput; 
 ?>

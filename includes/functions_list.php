@@ -143,7 +143,7 @@ WHERE
 ************/ 
 function loggedIn() { 
   // check both loggedin and username to verify user. 
-  if (isset($_SESSION['loggedin']) && isset($_SESSION['username'])) { 
+  if ($_SESSION['loggedin'] && isset($_SESSION['username'])) { 
     return true; 
   } 
    

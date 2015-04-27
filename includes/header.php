@@ -51,16 +51,17 @@
                         <a class="page-scroll" href="index.php#about">About</a>
                     </li>
                     <li>
+                        <a class="page-scroll" href="index.php#contact">Contact</a>
+                    </li>		
+                    <li>
                         <a class="page-scroll" href="rank.php">Rank</a>
                     </li>
 				        
-                        <?php ($_SESSION['loggedin']==True)?(print '<li><a class="page-scroll" href="challenge.php">Challenge</a></li>'):(print '');?>
-                    
-                    <li>
-                        <a class="page-scroll" href="index.php#contact">Contact</a>
+                        <?php (loggedIn()==True)?(print '<li><a class="page-scroll" href="challenge.php">Challenge</a></li>'):(print '');?>
+
+	            	<li><?php (loggedIn()==True)?(print '<a class="page-scroll" href="login.php?action=logout"><span class="glyphicon glyphicon-user"></span>Logout</a>'):(print '<a class="page-scroll" href="login.php"><span class="glyphicon glyphicon-user"></span>Login</a>'); ?>              
                     </li>
-	            	<li><?php ($_SESSION['loggedin']==True)?(print '<a class="page-scroll" href="login.php?action=logout"><span class="glyphicon glyphicon-user"></span>Logout</a>'):(print '<a class="page-scroll" href="login.php"><span class="glyphicon glyphicon-user"></span>Login</a>'); ?>              
-                    </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
