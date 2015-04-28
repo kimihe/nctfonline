@@ -12,7 +12,12 @@ $query = "select content,times from nctf_notice order by times DESC";
 $result = $dbc->query($query);
 if ($result->num_rows > 0) {
 	while($row = $result->fetch_assoc()) {
-		    $sOutput .= '<tr><td><h4>'.$row["content"].'<h4></td>';
+		    $sOutput .= '<tr><td><h4 style="color: #42dca3">';
+		    $arr_content = str_split($row["content"], 40);
+			foreach ($arr_content as $value){
+				$sOutput .= '<br>'.$value.'<br>';
+			}
+		    $sOutput .= '<h4></td>';
 			$sOutput .= '<td>'.$row["times"].'</td>';
 			$sOutput .= '</tr>';
 		}
@@ -25,3 +30,6 @@ $sOutput .= '</tbody></table></div>';
 $sOutput .= '</div>';
 echo $sOutput;
 ?>
+
+
+<?php include('includes/footer.html'); ?>
