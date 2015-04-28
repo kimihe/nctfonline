@@ -14,8 +14,12 @@ $message = $_POST['message'];
 insert_notice($message);
 }
  
+if (isset($_GET['delid'])){
+delete_notice($_GET['delid']);
+} 
+ 
 ?>
-<br><br><br>
+<br><br>
 <div  class="container col-md-6 col-md-offset-3" >
 <form class="form-horizontal" role="form" method="post" action="admin_notice.php">
     <div class="form-group">
@@ -36,6 +40,7 @@ insert_notice($message);
         </div>
     </div>
 </form>
+<br><br>
 <?php 
 $sOutput .= '<div  class="container col-md-6 col-md-offset-3" ><table class="table ">
    <tbody>';
@@ -46,8 +51,14 @@ $query = "select content,times from nctf_notice order by times DESC";
 $result = $dbc->query($query);
 if ($result->num_rows > 0) {
 	while($row = $result->fetch_assoc()) {
-		    $sOutput .= '<tr><td><h4>'.$row["content"].'<h4></td>';
-			$sOutput .= '<td>'.$row["times"].'</td>';
+		    $sOutput .= '<tr><td><h4>';
+		    $arr_content = str_split($row["content"], 30);
+			foreach ($arr_content as $value){
+				$sOutput .= '<br>'.$value.'<br>';
+			}
+		    $sOutput .= '<h4></td>';
+			$sOutput .= '<td>'.$row["times"].'</td>'; 
+			$sOutput .= '<td>   <button type="button" class="btn btn-primary btn-xs"><a href="admin_notice.php?delid='.$row["id"].'">Del</button>'.' <td>';
 			$sOutput .= '</tr>';
 		}
 }else {

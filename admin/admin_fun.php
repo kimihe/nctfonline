@@ -34,7 +34,7 @@ DELETE
 FROM
 	nctf_accounts
 WHERE
-	user_id ='.$_GET['delid'];
+	user_id ='.$user_id;
 $result = $dbc->query($query);
 $dbc->close();
 }
@@ -44,7 +44,7 @@ global $dbc;
 //message应当先处理一下，20个字符加一个br
 $query = "INSERT INTO nctf_notice (`content`,`times`)
 			 VALUES ('".$message."',now())";
-echo $query;
+//echo $query;
 $result = $dbc->query($query);
 
 if($result){
@@ -53,9 +53,22 @@ if($result){
 	exit;
 } else {
      echo '<h3 align="center"><span class="label label-danger"> Something Wrong</span></h3>';
-	 //header("refresh:3;url=admin_notice.php");
+	 header("refresh:1;url=admin_notice.php");
 	exit;
 }
 $dbc->close();
+}
+
+function delete_notice($delid){
+global $dbc;
+$query = '
+DELETE
+FROM
+	nctf_notice
+WHERE
+	id ='.$delid;
+$result = $dbc->query($query);
+$dbc->close();
+	
 }
 ?>

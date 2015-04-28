@@ -5,6 +5,18 @@
     This will create a SHA1 hash of the password 
     using 2 salts that the user specifies. 
 ************/ 
+function get_ip(){
+if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+    $ip = $_SERVER['HTTP_CLIENT_IP'];
+} elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+} else {
+    $ip = $_SERVER['REMOTE_ADDR'];
+}	
+return $ip;	
+}
+ 
+ 
 function hashPassword($pPassword) { 
   return hash('sha256', "24134&$%@e".$pPassword."dsas^#");
 } 
@@ -109,7 +121,8 @@ WHERE
  
     // Note the use of trigger_error instead of or die. 
     $query = mysqli_query($dbc,$sql) or trigger_error("Query Failed: " . mysql_error()); 
- 
+    
+	$ip = get_ip();
     // Error checks (Should be explained with the error) 
     if ($uLen <= 4 || $uLen >= 11) { 
       $_SESSION['error'] = "Username must be between 4 and 11 characters."; 
@@ -118,7 +131,8 @@ WHERE
     }elseif (mysqli_num_rows($query) == 1) { 
       $_SESSION['error'] = "Username already exists."; 
     }else { 
-	  $sql = "INSERT INTO nctf_accounts (`username`, `password`, `mail`,`time`) VALUES ('" . $eUsername . "', '" . hashPassword($pPassword). "','" . $pMail . "',now());";  
+	  $sql = "INSERT INTO nctf_accounts (`username`, `password`, `mail`,`time`,`register_ip`) VALUES ('" . $eUsername . "', '" . hashPassword($pPassword). "','" . $pMail . "',now(),'" . $ip . "');";  
+	  echo $sql;
       $query = mysqli_query($dbc,$sql) or trigger_error("Query Failed: " . mysql_error()); 
       if ($query) { 
         return true; 
@@ -130,7 +144,6 @@ WHERE
 } 
  
 
- 
 /*********** 
   bool loggedIn 
     verifies that session data is in tack 
@@ -293,3 +306,4 @@ function show_spanarray1($user_id){
 	    }
 	return $oostring ;
 }
+
