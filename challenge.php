@@ -5,7 +5,7 @@ if (!loggedIn()) {
 	header("Location: index.php"); 
     exit;	 
       } 
-	  
+	
 if (isset($_POST['key'])&&isset($_POST['questionid'])){
         
       if(validateSubmit( $_POST['questionid'],$_POST['key'])){
@@ -22,7 +22,7 @@ if (isset($_POST['key'])&&isset($_POST['questionid'])){
 }
 ?>
 
-<div  class="container col-md-5 col-md-offset-3" >
+<div  class="container col-md-4 col-md-offset-3" >
 <!--Display form-->
 <table class="table table-condensed">
    <caption> <h2><span class="glyphicon glyphicon-pencil"></span>  QUESTIONS<h2> </caption>
@@ -48,7 +48,7 @@ if ($result->num_rows > 0) {
 		$numm = $numm + 1;
 		$sOutput .= '<tr><td><h5>'.$row["question_id"].'</h5></td><td><a href="'.$row["question_url"].'"><h5>'.$row["question_title"].'<h5></a></td>';
 		$sOutput .= '<td><span class="badge">'.number_format($row["mark"]).'</span><td>';
-        if(in_array($row["question_id"],$answer_array)){	
+          if(in_array($row["question_id"],$answer_array)){	
 			$sOutput .= '<td><h4 align="center"><span class="label label-success"> correct </span></h4><td>';}
 			else{
 			$sOutput .= '<td><form action="challenge.php" method="post"> <div class="col-sm-6"> <input type="text" placeholder="key..." name="key" id="key" class="form-control"> <input type=hidden   name="questionid" value='.$row["question_id"].'> </div> <button name="submit" value="submit" class="btn btn-primary btn-sm" type="submit">submit</button></form><td>';
