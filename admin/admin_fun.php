@@ -1,8 +1,8 @@
 <?php
 function insert_question($question_title,$key,$mark,$type,$link){
 global $dbc;
-$query = "INSERT INTO nctf_questions (`question_title`,`answer`,`mark`,`type`,`question_url`)
-			 VALUES ('".$question_title."','".$key."','".$mark."','".$type."','".$link."')";
+$query = "INSERT INTO nctf_questions (`question_id`,`question_title`,`answer`,`mark`,`type`,`question_url`)
+			 VALUES ('".$question_id."','".$question_title."','".$key."','".$mark."','".$type."','".$link."')";
 //echo $query;
 $result = $dbc->query($query);
 
@@ -24,6 +24,17 @@ FROM
 	nctf_questions
 WHERE
 	question_id ='.$_GET['delid'];
+$result = $dbc->query($query);
+}
+
+function delete_user($user_id){
+global $dbc;
+$query = '
+DELETE
+FROM
+	nctf_accounts
+WHERE
+	user_id ='.$_GET['delid'];
 $result = $dbc->query($query);
 }
 

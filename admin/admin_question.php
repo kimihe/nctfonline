@@ -10,8 +10,9 @@ $key = $_POST['key'];
 $mark = $_POST['mark'];
 $type = $_POST['type'];
 $quesion_url = $_POST['question_url'];
+$quesion_id =  $_POST['question_id'];
         
-insert_question($question_title,$key,$mark,$type,$question_url);
+insert_question($question_id,$question_title,$key,$mark,$type,$question_url);
 
 }
 
@@ -21,14 +22,20 @@ delete_question($_GET['delid']);
 
 ?>
 <br><br><br>
-<div  class="container col-md-10 col-md-offset-1" >
+<div  class="container col-md-offset-1 col-md-8 " >
 <div class="row">
-    <div class="col-md-offset-1 col-md-3">
+  <div class="col-sm-9">
+   <div class="row">
+     <div class="col-xs-7 col-sm-6">
         <h3>添加题目</h3>
         <form action="admin_question.php" method="post">
             <div class="form-group">
                 <label for="question_title">Question Title</label>
                 <input type="text" class="form-control" id="question_title" name="question_title" placeholder="Enter your question title here">
+            </div>
+           <div class="form-group">
+                <label for="question_id">Question ID</label>
+                <input type="text" class="form-control" id="question_id" name="question_id" placeholder="Enter your question id here">
             </div>
 			 <div class="form-group">
                 <label for="type">Question type(1,2,3)</label>
@@ -49,11 +56,11 @@ delete_question($_GET['delid']);
             <button type="submit" class="btn btn-primary btn-large" value="submit" name="submit">+ Add Question</button>
 
         </form>
-    </div>
+
  </div>   
 
  
-<div class="col-md-offset-5 col-md-6">
+ <div class="col-xs-5 col-sm-6">
 	<table class="table table-condensed">
       <thead>
       <tr>
@@ -92,5 +99,7 @@ $dbc->close();
 	   	</tbody>
 </table>   
 	</div>
+</div>
+</div>
+</div></div>
 
- </div>

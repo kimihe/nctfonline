@@ -9,7 +9,6 @@ error_reporting(0);
 //Set the database access information as constants
 
 
-
 @ $dbc = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 

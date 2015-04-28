@@ -9,3 +9,6 @@
 
 =====contine=================
 插入cnzz流量统计
+添加留言功能
+http://codepen.io/magnus16/pen/buGiB
+https://bootstrapbay.com/blog/working-bootstrap-contact-form/
