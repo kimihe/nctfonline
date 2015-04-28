@@ -36,6 +36,26 @@ FROM
 WHERE
 	user_id ='.$_GET['delid'];
 $result = $dbc->query($query);
+$dbc->close();
 }
 
+function insert_notice($message){
+global $dbc;
+//message应当先处理一下，20个字符加一个br
+$query = "INSERT INTO nctf_notice (`content`,`times`)
+			 VALUES ('".$message."',now())";
+echo $query;
+$result = $dbc->query($query);
+
+if($result){
+     echo '<h3 align="center"><span class="label label-success">  Notice has been saved</span></h3>';
+	 header("refresh:1;url=admin_notice.php");
+	exit;
+} else {
+     echo '<h3 align="center"><span class="label label-danger"> Something Wrong</span></h3>';
+	 //header("refresh:3;url=admin_notice.php");
+	exit;
+}
+$dbc->close();
+}
 ?>

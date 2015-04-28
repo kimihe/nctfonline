@@ -22,7 +22,7 @@ if (isset($_POST['key'])&&isset($_POST['questionid'])){
 }
 ?>
 
-<div  class="container col-md-4 col-md-offset-3" >
+<div  class="container col-md-5 col-md-offset-3" >
 <!--Display form-->
 <table class="table table-condensed">
    <caption> <h2><span class="glyphicon glyphicon-pencil"></span>  QUESTIONS<h2> </caption>
