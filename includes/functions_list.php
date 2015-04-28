@@ -258,18 +258,11 @@ function get_questionamout() {
 }
 
 
-function show_spanarray1($user_id){
+function get_answerarray($user_id){
     global $dbc;
-	$oostring = '';
     $totalquestion = get_questionamout();	
     $query = "select question_id from nctf_rank where user_id='".$user_id."'";	
         $query_result = $dbc->query($query);
-		/*while($row = $query_result->fetch_assoc()) {
-		echo '9999'.$row["question_id"];
-		$new_array[] = $row;
-		var_dump($new_array);
-		}	*/
-		
 		$answerArray = cast_query_results($query_result);		
 		$answerArrayfuck=array();
 		foreach ($answerArray as $key=>$value){
@@ -277,10 +270,20 @@ function show_spanarray1($user_id){
 			$answerArrayfuck[]=$vvv;
 			}
 		}
+    return $answerArrayfuck;
+}
+
+
+function show_spanarray1($user_id){
+    global $dbc;
+	$oostring = '';
+    $totalquestion = get_questionamout();	
+    $answer_array= array();
+    $answer_array = get_answerarray($user_id);
         //var_dump($answerArrayfuck);
 		foreach ( range(0,$totalquestion) as $qid ) {
 		$qid = $qid+1;
-        if(in_array($qid,$answerArrayfuck)){			    
+        if(in_array($qid,$answer_array)){			    
                 $oostring .= '<span class="label label-success label-as-badge">'.$qid.'</span>';
                 }else{
                 $oostring .= '<span class="label label-default label-as-badge">'.$qid.'</span>';
@@ -290,4 +293,3 @@ function show_spanarray1($user_id){
 	    }
 	return $oostring ;
 }
-

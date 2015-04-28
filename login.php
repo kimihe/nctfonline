@@ -43,7 +43,8 @@ if (isset($_GET['action'])) {
 // and provide them with a means to logout. 
 if (loggedIn()) { 
     if ($_SESSION["username"]==ADMINNAME){
-	header("Location: admin/index.php");   
+	header("Location: admin/index.php"); 
+    exit;	
     }else{
      //enter home.php
     header("Location: home.php");}   

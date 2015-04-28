@@ -1,21 +1,22 @@
 <?php
-
-$rightAnswer = 0;
-$wrongAnswer = 0;
-
 require_once('includes/header.php');
-require_once('includes/functions_list.php');
-require_once('quiz.php');
 
- if (!loggedIn()) { 
+if (!loggedIn()) {
+	header("Location: index.php"); 
+    exit;	 
       } 
 	  
 if (isset($_POST['key'])&&isset($_POST['questionid'])){
         
       if(validateSubmit( $_POST['questionid'],$_POST['key'])){
-          echo "<h2><span class=\"label label-success\"> correct answers</span></h2>";
+          echo '<h3 align="center"><span class="label label-success"> correct answers</span></h3>';
+		  header("refresh:1;url=challenge.php");
+		  exit;
       } else {
-          echo "<h2><span class=\"label label-danger\">  wrong answers</span></h2>";
+          echo '<h3 align="center"><span class="label label-danger">  wrong answers</span></h3>';
+		 
+        header("refresh:1;url=challenge.php");
+        exit;
       }
  
 }
@@ -33,16 +34,33 @@ if (isset($_POST['key'])&&isset($_POST['questionid'])){
 		  
       </tr>
    </thead>
+<tbody>
+<?php
+$answer_array= array();
+$answer_array = get_answerarray($_SESSION['user_id']);
+//var_dump($answer_array);
+$query = "select * from nctf_questions";
+//Run the query
+$result = $dbc->query($query);
+if ($result->num_rows > 0) {
+	$numm = 0;
+	while($row = $result->fetch_assoc()) {
+		$numm = $numm + 1;
+		$sOutput .= '<tr><td><h5>'.$row["question_id"].'</h5></td><td><a href="'.$row["question_url"].'"><h5>'.$row["question_title"].'<h5></a></td>';
+		$sOutput .= '<td><span class="badge">'.number_format($row["mark"]).'</span><td>';
+        if(in_array($row["question_id"],$answer_array)){	
+			$sOutput .= '<td><h4 align="center"><span class="label label-success"> correct </span></h4><td>';}
+			else{
+			$sOutput .= '<td><form action="challenge.php" method="post"> <div class="col-sm-6"> <input type="text" placeholder="key..." name="key" id="key" class="form-control"> <input type=hidden   name="questionid" value='.$row["question_id"].'> </div> <button name="submit" value="submit" class="btn btn-primary btn-sm" type="submit">submit</button></form><td>';
+			}
+			
+		$sOutput .'</tr>';	
+		}
+    }else {
+		echo "There is no question in the database.";	
+	}
+$dbc->close();
 
-    <?php
-	
-    foreach($questions as $id => $question) {
-		$sOutput .= '<tr><td><h4>'.$id.'</h4></td><td><a href="'.$questions_comment[$id].'">'.$question.'</a></td>';
-        $sOutput .= '<td><span class="badge">'.number_format($questions_point[$id]).'</span><td>';
-		$sOutput .= '<td><form action="challenge.php" method="post"> <div class="col-sm-6"> <input type="text" placeholder="key..." name="key" id="key" class="form-control"> <input type=hidden   name="questionid" value='.$id.'> </div> <button name="submit" value="submit" class="btn btn-primary btn-large" type="submit">submit</button></form><td>';
-		$sOutput .'</tr>';		
-          
-        }
         echo $sOutput;
        ?>
 	   

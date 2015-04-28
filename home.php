@@ -3,6 +3,7 @@
 
  if ($_SESSION["username"]==ADMINNAME){
 	 header("Location: admin/index.php"); 
+	 exit();
  }
  ?>
 <br><br><br><br>
@@ -16,7 +17,7 @@
                     <?php  userProfile($_SESSION["username"]);?>
                         <tr>
                         <td>Home Address</td>
-                        <td>Nanjing,Qixia wenyuanRoad9 </td>
+                        <td>Nanjing,Qixia Wenyuan Road9 </td>
                       </tr>        
                     </tbody>
                   </table>
