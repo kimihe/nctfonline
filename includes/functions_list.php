@@ -213,53 +213,81 @@ function cast_query_results($rs) {
 }
 
 function userProfile($pUsername){
- global $dbc;
-//echo $pUsername;
-$query = "select user_id,username,tel,mail,xuehao,comment from nctf_accounts where username= '" .$pUsername. "';";
+    //display user profile
+	global $dbc;
+	$query = "select user_id,username,tel,mail,xuehao,comment from nctf_accounts where username= '" .$pUsername. "';";
 
-//Run the query
-$query_result = $dbc->query($query);
+	//Run the query
+	$query_result = $dbc->query($query);
 
-$userArray = array();
-while ($row = $query_result->fetch_assoc()){
-    $userArray[] = $row;
+	$userArray = array();
+	while ($row = $query_result->fetch_assoc()){
+		$userArray[] = $row;
+	}
+	//if (isset($userArray)){ exit;}
+	$userArray=$userArray[0];
+	//var_dump($userArray );
+
+	$oostring = '
+	      <tr>
+			 <td>User Name</td>
+			 <td>'.$userArray['username'].'</td>
+		  </tr>
+		  <tr>
+			 <td>Emai</td>
+			 <td>'.$userArray['mail'].'</td>
+		  </tr>
+		  <tr>
+			 <td>Phone Number</td>
+			 <td>'.$userArray['tel'].'</td>
+		  </tr>
+		  <tr>
+			 <td>Comment</td>
+			 <td>'.$userArray['comment'].'</td>
+		  </tr>
+		  ';
+	   
+	echo $oostring ;
+	}
+
+function get_questionamout() {
+	global $dbc;
+	$query1 = 'select count(*) as num from nctf_questions';
+    $num = mysqli_fetch_assoc($dbc->query($query1));
+    return  $num['num'];
 }
-//if (isset($userArray)){ exit;}
-$userArray=$userArray[0];
-//var_dump($userArray );
-
-  $oostring = '<table class="table">
-   <caption>personal profile</caption>
-   <thead>
-      <tr>
-         <th></th>
-         <th></th>
-      </tr>
-   </thead>
-         <tr>
-         <td>username</td>
-         <td>'.$userArray['username'].'</td>
-      </tr>
-	  <tr>
-         <td>mail</td>
-         <td>'.$userArray['mail'].'</td>
-      </tr>
-	 <tr>
-         <td>tel</td>
-         <td>'.$userArray['tel'].'</td>
-      </tr>
-	 <tr>
-         <td>comment</td>
-         <td>'.$userArray['comment'].'</td>
-      </tr>
-	  ';
-   
-$oostring .= '</table>';
-echo $oostring ;
 
 
-
- 
-
-
+function show_spanarray1($user_id){
+    global $dbc;
+	$oostring = '';
+    $totalquestion = get_questionamout();	
+    $query = "select question_id from nctf_rank where user_id='".$user_id."'";	
+        $query_result = $dbc->query($query);
+		/*while($row = $query_result->fetch_assoc()) {
+		echo '9999'.$row["question_id"];
+		$new_array[] = $row;
+		var_dump($new_array);
+		}	*/
+		
+		$answerArray = cast_query_results($query_result);		
+		$answerArrayfuck=array();
+		foreach ($answerArray as $key=>$value){
+			foreach ($value as $kkk=>$vvv){
+			$answerArrayfuck[]=$vvv;
+			}
+		}
+        //var_dump($answerArrayfuck);
+		foreach ( range(0,$totalquestion) as $qid ) {
+		$qid = $qid+1;
+        if(in_array($qid,$answerArrayfuck)){			    
+                $oostring .= '<span class="label label-success label-as-badge">'.$qid.'</span>';
+                }else{
+                $oostring .= '<span class="label label-default label-as-badge">'.$qid.'</span>';
+        }
+		
+		
+	    }
+	return $oostring ;
 }
+
