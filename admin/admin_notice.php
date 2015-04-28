@@ -16,7 +16,7 @@ insert_notice($message);
  
 ?>
 <br><br><br>
-<div  class="container col-md-5 col-md-offset-3" >
+<div  class="container col-md-6 col-md-offset-3" >
 <form class="form-horizontal" role="form" method="post" action="admin_notice.php">
     <div class="form-group">
         <label for="message" class="col-sm-2 control-label">添加公告</label>
@@ -36,4 +36,27 @@ insert_notice($message);
         </div>
     </div>
 </form>
+<?php 
+$sOutput .= '<div  class="container col-md-6 col-md-offset-3" ><table class="table ">
+   <tbody>';
+   
+$query = "select content,times from nctf_notice order by times DESC";
+
+//Run the query
+$result = $dbc->query($query);
+if ($result->num_rows > 0) {
+	while($row = $result->fetch_assoc()) {
+		    $sOutput .= '<tr><td><h4>'.$row["content"].'<h4></td>';
+			$sOutput .= '<td>'.$row["times"].'</td>';
+			$sOutput .= '</tr>';
+		}
+}else {
+		echo "There is no notice yet";
+		$dbc->close(); 
+		
+}
+$sOutput .= '</tbody></table></div>';   
+$sOutput .= '</div>';
+echo $sOutput;
+?>
 </div>

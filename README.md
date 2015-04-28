@@ -12,3 +12,4 @@
 添加留言功能
 http://codepen.io/magnus16/pen/buGiB
 https://bootstrapbay.com/blog/working-bootstrap-contact-form/
+记录访问每个页面的ip

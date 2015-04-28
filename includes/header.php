@@ -9,9 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+	
 
     <title>NCTF - 南邮CTF线上赛</title>
 
+	<link rel="shortcut icon" href="favicon.ico" /> 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
