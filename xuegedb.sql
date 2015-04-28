@@ -1,32 +1,19 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : local
-Source Server Version : 50617
-Source Host           : localhost:3306
+Source Server         : hk.xlcteam.com
+Source Server Version : 50537
+Source Host           : hk.xlcteam.com:3306
 Source Database       : xuegedb
 
 Target Server Type    : MYSQL
-Target Server Version : 50617
+Target Server Version : 50537
 File Encoding         : 65001
 
-Date: 2015-04-28 00:38:57
+Date: 2015-04-28 17:06:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for admin
--- ----------------------------
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE `nctf_admin` (
-  `id` int(20) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(20) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
- 
 
 -- ----------------------------
 -- Table structure for nctf_accounts
@@ -44,6 +31,7 @@ CREATE TABLE `nctf_accounts` (
   `score` int(11) DEFAULT '0',
   `time` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `locked` varchar(1) DEFAULT '0',
+  `rightanswer` int(10) unsigned zerofill DEFAULT '0000000000',
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
@@ -65,10 +53,11 @@ DROP TABLE IF EXISTS `nctf_questions`;
 CREATE TABLE `nctf_questions` (
   `question_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `type` int(10) unsigned zerofill NOT NULL,
-  `question` varchar(255) NOT NULL COMMENT '题目标题',
+  `question_title` varchar(255) NOT NULL COMMENT '题目标题',
   `mark` int(10) unsigned zerofill NOT NULL,
   `answer` varchar(64) NOT NULL,
   `comment` varchar(255) DEFAULT NULL COMMENT '放题目url',
+  `question_url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`question_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
@@ -82,7 +71,7 @@ CREATE TABLE `nctf_rank` (
   `question_id` int(10) unsigned NOT NULL,
   `mark` int(10) DEFAULT NULL,
   PRIMARY KEY (`submit_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=146 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for nctf_submitlog

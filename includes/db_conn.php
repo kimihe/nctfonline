@@ -8,7 +8,10 @@ session_start();
 error_reporting(0);
 //Set the database access information as constants
 
-
+DEFINE ('DB_USER', 'xuege');
+DEFINE ('DB_PASSWORD', 'yxt931126');
+DEFINE ('DB_HOST', 'hk.xlcteam.com');
+DEFINE ('DB_NAME', 'xuegedb');
 
 @ $dbc = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
