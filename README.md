@@ -20,4 +20,4 @@ https://bootstrapbay.com/blog/working-bootstrap-contact-form/
 找回密码功能
 后台可设置找回密码邮箱
 ctfadmin跳到admin profile
-使用highcharts.js，前十名trend
+使用highcharts.js，前十名trend，最新事件（最新提交正确的）。
